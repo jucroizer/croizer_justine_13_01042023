@@ -25,13 +25,10 @@ function Login() {
               <input type="checkbox" id="remember-me" />
               <label for="remember-me">Remember me</label>
             </div>
-            {/* <!-- PLACEHOLDER DUE TO STATIC SITE --> */}
+            
             <Link to="/Profil" className="sign-in-button">
               Sign In
             </Link>
-            {/* <!-- SHOULD BE THE BUTTON BELOW --> */}
-            {/* <!-- <button className="sign-in-button">Sign In</button> -->
-          <!--  --> */}
           </form>
         </section>
       </main>
