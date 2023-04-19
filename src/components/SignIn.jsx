@@ -5,15 +5,19 @@ import useFetch from "../API/FetchAPI";
 
 function Login() {
 
-    // let [email, setEmail] = useState("");
-    // let [password, setPassword] = useState("");
-
-    const [credentials, setCredentials] = useState({
-        email: "",
-        password: "",
+    const [emailValue, setEmail] = useState({
+        email : ""
+    });
+    const [passwordValue, setPassword] = useState({
+        password : ""
     });
 
-    console.log(credentials);
+    // const [credentials, setCredentials] = useState({
+    //     email: "",
+    //     password: "",
+    // });
+
+    // console.log(credentials);
     // const onChange = (e) => {
     //     setCredentials({ ...credentials, [e.target.name]: e.target.value });
     //     console.log(credentials);
@@ -21,8 +25,12 @@ function Login() {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        const { email, password } = credentials;
+        const { email } = emailValue;
+        console.log("email",email);
+        const { password } = passwordValue;
+        console.log("password",password);
         const user = { email, password };
+        console.log("user",user);
 
         const response = await useFetch.login(user);
         console.log(response);
@@ -62,8 +70,8 @@ function Login() {
                       type="text"
                       id="username"
                       name="email"
-                      value={credentials.email}
-                      onChange={(e) => setCredentials({ ...credentials, [e.target.name]: e.target.value })}
+                      value={emailValue.email}
+                      onChange={(e) => setEmail({ email: e.target.value })}
                   />
               </div>
               <div className="input-wrapper">
@@ -72,8 +80,8 @@ function Login() {
                       type="password"
                       id="password"
                       name="password"
-                      value={credentials.password}
-                      onChange={(e) => setCredentials({ ...credentials, [e.target.name]: e.target.value })}
+                      value={passwordValue.password}
+                      onChange={(e) => setPassword({ password: e.target.value })}
                   />
               </div>
               <div className="input-remember">

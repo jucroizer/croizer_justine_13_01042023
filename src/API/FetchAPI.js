@@ -1,6 +1,7 @@
 class callAPI {
     
     static async login(email, password) {
+      console.log(email, password);
       const rawResponse = await fetch("http://localhost:3001/api/v1/user/login", {
         method: "POST",
         headers: {
