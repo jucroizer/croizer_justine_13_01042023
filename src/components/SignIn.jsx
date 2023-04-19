@@ -12,27 +12,14 @@ function Login() {
         password : ""
     });
 
-    // const [credentials, setCredentials] = useState({
-    //     email: "",
-    //     password: "",
-    // });
-
-    // console.log(credentials);
-    // const onChange = (e) => {
-    //     setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    //     console.log(credentials);
-    // };
-
     const onSubmit = async (e) => {
         e.preventDefault();
         const { email } = emailValue;
         console.log("email",email);
         const { password } = passwordValue;
         console.log("password",password);
-        const user = { email, password };
-        console.log("user",user);
 
-        const response = await useFetch.login(user);
+        const response = await useFetch.login(email, password);
         console.log(response);
 
         if(response === "ok"){
@@ -41,25 +28,6 @@ function Login() {
             console.log('connexion ko');
         }
     };
-
-    // let [token, setToken] = useState("");
- 
-    // function recupData(){
-    //     const fetchData = async () => { 
-    //         const emailData = await useFetch.login(email);
-    //         const passwordData = await useFetch.login(password);
-    //         console.log('email', emailData);
-    //         console.log('password', passwordData);
-
-    //         if(emailData === email && passwordData === password){
-    //             Navigate('/Profil');
-    //             console.log('connexion ok');
-    //         }else{
-    //             console.log('connexion ko');
-    //         }
-    //     }
-    //     fetchData();
-    // }
   
     return (
       <div>
