@@ -13,10 +13,11 @@ function Login() {
         password: "",
     });
 
-    const onChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
-        console.log(credentials);
-    };
+    console.log(credentials);
+    // const onChange = (e) => {
+    //     setCredentials({ ...credentials, [e.target.name]: e.target.value });
+    //     console.log(credentials);
+    // };
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -62,7 +63,7 @@ function Login() {
                       id="username"
                       name="email"
                       value={credentials.email}
-                      onChange={onChange}
+                      onChange={(e) => setCredentials({ ...credentials, [e.target.name]: e.target.value })}
                   />
               </div>
               <div className="input-wrapper">
@@ -72,7 +73,7 @@ function Login() {
                       id="password"
                       name="password"
                       value={credentials.password}
-                      onChange={onChange}
+                      onChange={(e) => setCredentials({ ...credentials, [e.target.name]: e.target.value })}
                   />
               </div>
               <div className="input-remember">
