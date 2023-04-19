@@ -1,9 +1,10 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import useFetch from "../API/FetchAPI";
-// import { Navigate } from "react-router-dom";
-
 
 function Login() {
+
+    let navigate = useNavigate();
 
     const [emailValue, setEmail] = useState({
         email : ""
@@ -22,8 +23,21 @@ function Login() {
         const response = await useFetch.login(email, password);
         console.log(response);
 
-        if(response === "ok"){
+        if(response === true){
+            let userInfo = await useFetch.getUserProfile(localStorage.getItem('token'));
+            console.log(userInfo.body);
+
+            let user = userInfo.body;
+            console.log(user)
+            let firstName = user.firstName;
+            console.log(firstName)
+            let lastName = user.lastName;
+            console.log(lastName)
+            let token = localStorage.getItem('token');
+            console.log(token)
+
             console.log('connexion ok');
+            navigate('/Profil');
         }else{
             console.log('connexion ko');
         }
