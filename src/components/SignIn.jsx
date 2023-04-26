@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../API/FetchAPI";
+// simport store from "../redux/store.js";
 
 function Login() {
 
@@ -40,6 +41,7 @@ function Login() {
             navigate('/Profil');
         }else{
             console.log('connexion ko');
+            alert('Vos identifiants sont incorrects, veuillez réessayer.');
         }
     };
   
