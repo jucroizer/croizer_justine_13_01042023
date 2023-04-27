@@ -39,6 +39,9 @@ class callAPI {
     }
   
     static async updateUserName(firstName, lastName, token) {
+      console.log("fetchApi firstName", firstName);
+      console.log("fetchApi lastName", lastName);
+      // console.log("fetchApi token", token);
       const rawResponse = await fetch("http://localhost:3001/api/v1/user/profile", {
         method: "PUT",
         headers: {
@@ -49,7 +52,7 @@ class callAPI {
         body: JSON.stringify({ firstName: `${firstName}`, lastName: `${lastName}` }),
       });
       const content = await rawResponse.json();
-  
+      console.log("content", content);
       return content.body;
     }
   }

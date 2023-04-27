@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 function EditProfil() {
 
-    const isLogged = Store.getState();
+const isLogged = Store.getState();
   console.log("logged", isLogged.isLogged)
 
   const token = localStorage.getItem('token');

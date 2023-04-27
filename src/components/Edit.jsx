@@ -1,10 +1,6 @@
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 import useFetch from "../API/FetchAPI";
 import "../styles/Login.css"
-// import { useDispatch } from "react-redux";
-// import { login } from "../store/store.js";
-// import store from "../redux/store.js";
 
 function Edit() {
 
@@ -18,55 +14,25 @@ function Edit() {
         lastName : ""
     });
 
-    // const [emailValue, setEmail] = useState({
-    //     email : ""
-    // });
-    // const [passwordValue, setPassword] = useState({
-    //     password : ""
-    // });
-
-    // const dispatch = useDispatch();
-    // console.log(dispatch);
-
-    const onSubmit = async (e) => {
+    const updateUser = async (e) => {
         e.preventDefault();
         const { firstName } = firstNameValue;
         const { lastName } = lastNameValue;
         const response = await useFetch.updateUserName(firstName, lastName);
-        console.log(response)
+        console.log(response);
 
-        // if(response === true){
-        //     let userInfo = await useFetch.getUserProfile(localStorage.getItem('token'));
-        //     console.log(userInfo.body);
-
-        //     let user = userInfo.body;
-        //     console.log(user)
-        //     let firstName = user.firstName;
-        //     console.log(firstName)
-        //     let lastName = user.lastName;
-        //     console.log(lastName)
-        //     let id = user.id;
-        //     console.log(id)
-        //     let token = localStorage.getItem('token');
-        //     console.log(token)
-
-
-        //     dispatch(login(firstName, lastName, id, token, true));
-        //     console.log('connexion ok');
-        //     navigate('/Profil');
-        // }else{
-        //     console.log('connexion ko');
-        //     alert('Vos identifiants sont incorrects, veuillez réessayer.');
-        // }
+        if(response === true){
+            console.log('update ok');
+        }else{
+            console.log('update ko');
+        }
     };
 
-    // console.log(dispatch);
-  
     return (
       <div>
-          <form onSubmit={onSubmit}>
+          <form onSubmit={updateUser}>
               <div className="input-wrapper">
-                  <label>Username</label>
+                  <label>FirstName</label>
                   <input
                       type="text"
                       id="username"
@@ -76,7 +42,7 @@ function Edit() {
                   />
               </div>
               <div className="input-wrapper">
-                  <label>Password</label>
+                  <label>LastName</label>
                   <input
                       type="text"
                       id="lastname"
@@ -87,7 +53,7 @@ function Edit() {
               </div>
 
               <div>
-                  <button type="submit" className="sign-in-button" >
+                  <button type="submit" className="sign-in-button">
                       Edit Profile
                   </button>
               </div>
