@@ -1,9 +1,9 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Account from "../components/Acount";
-// import { useSelector } from "react-redux";
 import { Store } from "../store/store";
-
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function Profil() {
 
@@ -11,14 +11,20 @@ function Profil() {
   const isLogged = Store.getState();
   console.log("logged", isLogged.isLogged)
 
-  if(isLogged.isLogged === false){
-    window.location.href = "/SignIn";
-  }
+  const token = localStorage.getItem('token');
+  console.log(token)
+
+  const navigate = useNavigate();
+
+  useEffect(() => { 
+    if(token === null || isLogged.isLogged === false){
+      navigate('/');
+    }
+  }, [isLogged.isLogged]);
+
 
   const firstName = isLogged.firstName;
-  console.log(firstName)
   const lastName = isLogged.lastName;
-  console.log(lastName)
 
   return (
     <div>

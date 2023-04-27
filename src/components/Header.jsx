@@ -10,17 +10,18 @@ import { useNavigate } from "react-router-dom";
 function Header() {
 
   const isLogged = Store.getState();
-  console.log("logged", isLogged.isLogged)
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  //fonction logout
+  
   const logout = () => {
     localStorage.removeItem('token');
-    dispatch(logout);
-    navigate('/SignIn');
+    dispatch({type: "logout"});
+    navigate('/');
+    window.location.reload();
   }
+  
 
   return (
     <header>
