@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useFetch from "../API/FetchAPI";
-// simport store from "../redux/store.js";
+import { useDispatch } from "react-redux";
+import { login } from "../store/store.js";
+// import store from "../redux/store.js";
 
 function Login() {
 
@@ -14,15 +16,14 @@ function Login() {
         password : ""
     });
 
+    const dispatch = useDispatch();
+    // console.log(dispatch);
+
     const onSubmit = async (e) => {
         e.preventDefault();
         const { email } = emailValue;
-        console.log("email",email);
         const { password } = passwordValue;
-        console.log("password",password);
-
         const response = await useFetch.login(email, password);
-        console.log(response);
 
         if(response === true){
             let userInfo = await useFetch.getUserProfile(localStorage.getItem('token'));
@@ -34,9 +35,13 @@ function Login() {
             console.log(firstName)
             let lastName = user.lastName;
             console.log(lastName)
+            let id = user.id;
+            console.log(id)
             let token = localStorage.getItem('token');
             console.log(token)
 
+
+            dispatch(login(firstName, lastName, id, token, true));
             console.log('connexion ok');
             navigate('/Profil');
         }else{
@@ -44,6 +49,8 @@ function Login() {
             alert('Vos identifiants sont incorrects, veuillez réessayer.');
         }
     };
+
+    // console.log(dispatch);
   
     return (
       <div>

@@ -1,8 +1,25 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Account from "../components/Acount";
+// import { useSelector } from "react-redux";
+import { Store } from "../store/store";
+
 
 function Profil() {
+
+  
+  const isLogged = Store.getState();
+  console.log("logged", isLogged.isLogged)
+
+  if(isLogged.isLogged === false){
+    window.location.href = "/SignIn";
+  }
+
+  const firstName = isLogged.firstName;
+  console.log(firstName)
+  const lastName = isLogged.lastName;
+  console.log(lastName)
+
   return (
     <div>
       <Header />
@@ -11,7 +28,7 @@ function Profil() {
           <h1>
             Welcome back
             <br />
-            Tony Jarvis!
+            {firstName} {lastName}!
           </h1>
           <button className="edit-button">Edit Name</button>
         </div>
