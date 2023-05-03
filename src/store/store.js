@@ -74,7 +74,6 @@ function reducer(state = initialState, action) {
       draft.firstName = "";
       draft.lastName = "";
       draft.token = "";
-      console.log('apres logout')
     });
   }
 
@@ -95,4 +94,3 @@ function reducer(state = initialState, action) {
 
 //creation du store
 export const Store = createStore(reducer, initialState);
-console.log(Store.getState());

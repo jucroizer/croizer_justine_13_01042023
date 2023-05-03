@@ -5,6 +5,8 @@ import { Store } from "../store/store";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
+// Page Error 404
+
 function Profil() {
   const isLogged = Store.getState();
   const logged = isLogged.isLogged;
