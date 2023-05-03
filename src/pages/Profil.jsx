@@ -7,18 +7,19 @@ import { useEffect } from "react";
 
 function Profil() {
   const isLogged = Store.getState();
-  console.log("logged", isLogged.isLogged);
+  const logged = isLogged.isLogged;
+  // console.log("logged", isLogged.isLogged);
 
-  const token = localStorage.getItem("token");
-  console.log(token);
+  // const token = localStorage.getItem("token");
+  // console.log(token);
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (token === null || isLogged.isLogged === false) {
+    if (logged === false) {
       navigate("/");
     }
-  }, [isLogged.isLogged]);
+  }, [logged]);
 
   const firstName = isLogged.firstName;
   const lastName = isLogged.lastName;

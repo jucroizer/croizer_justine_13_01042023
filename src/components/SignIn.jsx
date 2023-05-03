@@ -23,7 +23,7 @@ function Login() {
     const { email } = emailValue;
     const { password } = passwordValue;
     const response = await useFetch.login(email, password);
-    console.log("response sign in ",response)
+    // console.log("response sign in ",response)
 
     if (response === true) {
       let userInfo = await useFetch.getUserProfile(

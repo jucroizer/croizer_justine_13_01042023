@@ -27,7 +27,6 @@ function Edit() {
       const response = await useFetch.getUserProfile(
         localStorage.getItem("token")
       );
-      // console.log(response.body);
       setToken({ token: localStorage.getItem("token") });
       setFirstName({ firstName: response.body.firstName });
       setLastName({ lastName: response.body.lastName });
