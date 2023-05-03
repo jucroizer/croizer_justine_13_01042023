@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { nameChange } from "../store/store.js";
 import useFetch from "../API/FetchAPI";
 import "../styles/Login.css";
 
 function Edit() {
-  // let navigate = useNavigate();
+  let navigate = useNavigate();
 
   const [firstNameValue, setFirstName] = useState({
     firstName: "",
@@ -15,12 +16,17 @@ function Edit() {
     lastName: "",
   });
 
+  const [tokenValue, setToken] = useState({
+    token: "",
+  });
+
+
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getUser = async () => {
       const response = await useFetch.getUserProfile(
-        localStorage.getItem("token")
+        setToken({ token: localStorage.getItem("token")})
       );
       console.log(response.body);
       setFirstName({ firstName: response.body.firstName });
@@ -33,14 +39,16 @@ function Edit() {
     e.preventDefault();
     const { firstName } = firstNameValue;
     const { lastName } = lastNameValue;
-    // const { token } = localStorage.getItem("token");
-    const response = await useFetch.updateUserName(firstName, lastName);
+    const { token } = tokenValue;
+    console.log("token",token);
+    const response = await useFetch.updateUserName(firstName, lastName, token, true);
     console.log("reponse",response);
 
     if (response === true) {
 
       dispatch(nameChange(firstName, lastName));
       console.log("update ok");
+      navigate("/Profil")
     } else {
       console.log("update ko");
     }

@@ -31,15 +31,15 @@ function Login() {
       console.log(userInfo.body);
 
       let user = userInfo.body;
-      console.log(user);
+      // console.log(user);
       let firstName = user.firstName;
-      console.log(firstName);
+      // console.log(firstName);
       let lastName = user.lastName;
-      console.log(lastName);
+      // console.log(lastName);
       let id = user.id;
-      console.log(id);
+      // console.log(id);
       let token = localStorage.getItem("token");
-      console.log(token);
+      // console.log(token);
 
       dispatch(login(firstName, lastName, id, token, true));
       console.log("connexion ok");
