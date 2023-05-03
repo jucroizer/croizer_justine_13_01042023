@@ -20,15 +20,15 @@ function Edit() {
     token: "",
   });
 
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getUser = async () => {
       const response = await useFetch.getUserProfile(
-        setToken({ token: localStorage.getItem("token")})
+        localStorage.getItem("token")
       );
-      console.log(response.body);
+      // console.log(response.body);
+      setToken({ token: localStorage.getItem("token") });
       setFirstName({ firstName: response.body.firstName });
       setLastName({ lastName: response.body.lastName });
     };
@@ -40,18 +40,11 @@ function Edit() {
     const { firstName } = firstNameValue;
     const { lastName } = lastNameValue;
     const { token } = tokenValue;
-    console.log("token",token);
-    const response = await useFetch.updateUserName(firstName, lastName, token, true);
-    console.log("reponse",response);
+    const response = await useFetch.updateUserName(firstName, lastName, token);
+    console.log("reponse", response);
 
-    if (response === true) {
-
-      dispatch(nameChange(firstName, lastName));
-      console.log("update ok");
-      navigate("/Profil")
-    } else {
-      console.log("update ko");
-    }
+    dispatch(nameChange(firstName, lastName));
+    navigate("/Profil");
   };
 
   return (
