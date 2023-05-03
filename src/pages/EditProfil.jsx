@@ -7,21 +7,20 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function EditProfil() {
+  const isLogged = Store.getState();
+  console.log("logged", isLogged.isLogged);
 
-const isLogged = Store.getState();
-  console.log("logged", isLogged.isLogged)
-
-  const token = localStorage.getItem('token');
-  console.log(token)
+  const token = localStorage.getItem("token");
+  console.log(token);
 
   const navigate = useNavigate();
 
-  useEffect(() => { 
-    if(token === null || isLogged.isLogged === false){
-      navigate('/');
+  useEffect(() => {
+    if (token === null || isLogged.isLogged === false) {
+      navigate("/");
     }
   }, [isLogged.isLogged]);
-  
+
   return (
     <div>
       <Header />

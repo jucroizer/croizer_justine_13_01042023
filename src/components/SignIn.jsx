@@ -6,87 +6,87 @@ import { login } from "../store/store.js";
 // import store from "../redux/store.js";
 
 function Login() {
+  let navigate = useNavigate();
 
-    let navigate = useNavigate();
+  const [emailValue, setEmail] = useState({
+    email: "",
+  });
+  const [passwordValue, setPassword] = useState({
+    password: "",
+  });
 
-    const [emailValue, setEmail] = useState({
-        email : ""
-    });
-    const [passwordValue, setPassword] = useState({
-        password : ""
-    });
+  const dispatch = useDispatch();
+  // console.log(dispatch);
 
-    const dispatch = useDispatch();
-    // console.log(dispatch);
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    const { email } = emailValue;
+    const { password } = passwordValue;
+    const response = await useFetch.login(email, password);
 
-    const onSubmit = async (e) => {
-        e.preventDefault();
-        const { email } = emailValue;
-        const { password } = passwordValue;
-        const response = await useFetch.login(email, password);
+    if (response === true) {
+      let userInfo = await useFetch.getUserProfile(
+        localStorage.getItem("token")
+      );
+      console.log(userInfo.body);
 
-        if(response === true){
-            let userInfo = await useFetch.getUserProfile(localStorage.getItem('token'));
-            console.log(userInfo.body);
+      let user = userInfo.body;
+      console.log(user);
+      let firstName = user.firstName;
+      console.log(firstName);
+      let lastName = user.lastName;
+      console.log(lastName);
+      let id = user.id;
+      console.log(id);
+      let token = localStorage.getItem("token");
+      console.log(token);
 
-            let user = userInfo.body;
-            console.log(user)
-            let firstName = user.firstName;
-            console.log(firstName)
-            let lastName = user.lastName;
-            console.log(lastName)
-            let id = user.id;
-            console.log(id)
-            let token = localStorage.getItem('token');
-            console.log(token)
+      dispatch(login(firstName, lastName, id, token, true));
+      console.log("connexion ok");
+      navigate("/Profil");
+    } else {
+      console.log("connexion ko");
+      alert("Vos identifiants sont incorrects, veuillez réessayer.");
+    }
+  };
 
+  // console.log(dispatch);
 
-            dispatch(login(firstName, lastName, id, token, true));
-            console.log('connexion ok');
-            navigate('/Profil');
-        }else{
-            console.log('connexion ko');
-            alert('Vos identifiants sont incorrects, veuillez réessayer.');
-        }
-    };
+  return (
+    <div>
+      <form onSubmit={onSubmit}>
+        <div className="input-wrapper">
+          <label>Username</label>
+          <input
+            type="text"
+            id="username"
+            name="email"
+            value={emailValue.email}
+            onChange={(e) => setEmail({ email: e.target.value })}
+          />
+        </div>
+        <div className="input-wrapper">
+          <label>Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={passwordValue.password}
+            onChange={(e) => setPassword({ password: e.target.value })}
+          />
+        </div>
+        <div className="input-remember">
+          <input type="checkbox" id="remember-me" />
+          <label>Remember me</label>
+        </div>
 
-    // console.log(dispatch);
-  
-    return (
-      <div>
-          <form onSubmit={onSubmit}>
-              <div className="input-wrapper">
-                  <label>Username</label>
-                  <input
-                      type="text"
-                      id="username"
-                      name="email"
-                      value={emailValue.email}
-                      onChange={(e) => setEmail({ email: e.target.value })}
-                  />
-              </div>
-              <div className="input-wrapper">
-                  <label>Password</label>
-                  <input
-                      type="password"
-                      id="password"
-                      name="password"
-                      value={passwordValue.password}
-                      onChange={(e) => setPassword({ password: e.target.value })}
-                  />
-              </div>
-              <div className="input-remember">
-                  <input type="checkbox" id="remember-me" />
-                  <label>Remember me</label>
-              </div>
-
-              <div>
-                  <button type="submit" className="sign-in-button" >
-                      Sign In
-                  </button>
-              </div>
-          </form>
-      </div>
+        <div>
+          <button type="submit" className="sign-in-button">
+            Sign In
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 

@@ -8,20 +8,17 @@ import { useNavigate } from "react-router-dom";
 // import { faFontAwesome } from '@fortawesome/free-solid-svg-icons';
 
 function Header() {
-
   const isLogged = Store.getState();
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  
   const logout = () => {
-    localStorage.removeItem('token');
-    dispatch({type: "logout"});
-    navigate('/');
+    localStorage.removeItem("token");
+    dispatch({ type: "logout" });
+    navigate("/");
     window.location.reload();
-  }
-  
+  };
 
   return (
     <header>
@@ -35,19 +32,22 @@ function Header() {
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
         <div>
-          {
-            isLogged.isLogged === true ? (
-              <Link to="/Profil" className="main-nav-item" href="./sign-in.html" onClick={logout}>
-                <i className="fa fa-user-circle"></i>
-                Sign Out
-              </Link>
-            ) : (
-              <Link to="/Login" className="main-nav-item" href="./sign-in.html">
-                <i className="fa fa-user-circle"></i>
-                Sign In
-              </Link>
-            )
-          }
+          {isLogged.isLogged === true ? (
+            <Link
+              to="/Profil"
+              className="main-nav-item"
+              href="./sign-in.html"
+              onClick={logout}
+            >
+              <i className="fa fa-user-circle"></i>
+              Sign Out
+            </Link>
+          ) : (
+            <Link to="/Login" className="main-nav-item" href="./sign-in.html">
+              <i className="fa fa-user-circle"></i>
+              Sign In
+            </Link>
+          )}
         </div>
       </nav>
     </header>

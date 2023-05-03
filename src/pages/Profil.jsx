@@ -6,31 +6,27 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 function Profil() {
-
-  
   const isLogged = Store.getState();
-  console.log("logged", isLogged.isLogged)
+  console.log("logged", isLogged.isLogged);
 
-  const token = localStorage.getItem('token');
-  console.log(token)
+  const token = localStorage.getItem("token");
+  console.log(token);
 
   const navigate = useNavigate();
 
-  useEffect(() => { 
-    if(token === null || isLogged.isLogged === false){
-      navigate('/');
+  useEffect(() => {
+    if (token === null || isLogged.isLogged === false) {
+      navigate("/");
     }
   }, [isLogged.isLogged]);
-
 
   const firstName = isLogged.firstName;
   const lastName = isLogged.lastName;
 
-
   const edit = () => {
-    navigate('/EditProfil');
-  }
-  
+    navigate("/EditProfil");
+  };
+
   return (
     <div>
       <Header />
@@ -41,7 +37,9 @@ function Profil() {
             <br />
             {firstName} {lastName}!
           </h1>
-          <button className="edit-button" onClick={edit}>Edit Name</button>
+          <button className="edit-button" onClick={edit}>
+            Edit Name
+          </button>
         </div>
         <h2 className="sr-only">Accounts</h2>
         <Account

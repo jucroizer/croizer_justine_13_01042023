@@ -1,64 +1,82 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { nameChange } from "../store/store.js";
 import useFetch from "../API/FetchAPI";
-import "../styles/Login.css"
+import "../styles/Login.css";
 
 function Edit() {
+  // let navigate = useNavigate();
 
-    // let navigate = useNavigate();
+  const [firstNameValue, setFirstName] = useState({
+    firstName: "",
+  });
 
-    const [firstNameValue, setFirstName] = useState({
-        firstName : ""
-    });
+  const [lastNameValue, setLastName] = useState({
+    lastName: "",
+  });
 
-    const [lastNameValue, setLastName] = useState({
-        lastName : ""
-    });
+  const dispatch = useDispatch();
 
-    const updateUser = async (e) => {
-        e.preventDefault();
-        const { firstName } = firstNameValue;
-        const { lastName } = lastNameValue;
-        const response = await useFetch.updateUserName(firstName, lastName);
-        console.log(response);
-
-        if(response === true){
-            console.log('update ok');
-        }else{
-            console.log('update ko');
-        }
+  useEffect(() => {
+    const getUser = async () => {
+      const response = await useFetch.getUserProfile(
+        localStorage.getItem("token")
+      );
+      console.log(response.body);
+      setFirstName({ firstName: response.body.firstName });
+      setLastName({ lastName: response.body.lastName });
     };
+    getUser();
+  }, []);
 
-    return (
-      <div>
-          <form onSubmit={updateUser}>
-              <div className="input-wrapper">
-                  <label>FirstName</label>
-                  <input
-                      type="text"
-                      id="username"
-                      name="username"
-                      value={firstNameValue.lastName}
-                      onChange={(e) => setFirstName({ firstName: e.target.value })}
-                  />
-              </div>
-              <div className="input-wrapper">
-                  <label>LastName</label>
-                  <input
-                      type="text"
-                      id="lastname"
-                      name="lastname"
-                      value={lastNameValue.lastName}
-                      onChange={(e) => setLastName({ lastName: e.target.value })}
-                  />
-              </div>
+  const updateUser = async (e) => {
+    e.preventDefault();
+    const { firstName } = firstNameValue;
+    const { lastName } = lastNameValue;
+    // const { token } = localStorage.getItem("token");
+    const response = await useFetch.updateUserName(firstName, lastName);
+    console.log("reponse",response);
 
-              <div>
-                  <button type="submit" className="sign-in-button">
-                      Edit Profile
-                  </button>
-              </div>
-          </form>
-      </div>
+    if (response === true) {
+
+      dispatch(nameChange(firstName, lastName));
+      console.log("update ok");
+    } else {
+      console.log("update ko");
+    }
+  };
+
+  return (
+    <div>
+      <form onSubmit={updateUser}>
+        <div className="input-wrapper">
+          <label>FirstName</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={firstNameValue.firstName}
+            onChange={(e) => setFirstName({ firstName: e.target.value })}
+          />
+        </div>
+        <div className="input-wrapper">
+          <label>LastName</label>
+          <input
+            type="text"
+            id="lastname"
+            name="lastname"
+            value={lastNameValue.lastName}
+            onChange={(e) => setLastName({ lastName: e.target.value })}
+          />
+        </div>
+
+        <div>
+          <button type="submit" className="sign-in-button">
+            Edit Profile
+          </button>
+        </div>
+      </form>
+    </div>
   );
 }
 
