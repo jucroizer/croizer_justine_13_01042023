@@ -4,6 +4,8 @@
 
 .bg-dark {
   background-color: #12002b;
+  height: 78vh;
+  padding: 1em;
 }
 
 .sign-in-button {
@@ -28,7 +30,7 @@
 }
 
 .sign-in-icon {
-  font-size: 5rem;
+  font-size: 1rem;
 }
 
 .input-remember {

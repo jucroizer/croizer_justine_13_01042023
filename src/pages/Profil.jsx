@@ -4,6 +4,7 @@ import Account from "../components/Acount";
 import { Store } from "../store/store";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import "../styles/Profil.css";
 
 // Page Error 404
 
@@ -33,7 +34,7 @@ function Profil() {
   return (
     <div>
       <Header />
-      <main className="main bg-dark">
+      <main className="main bg-profil bg-dark " style={{height:'90vh'}}>
         <div className="header">
           <h1>
             Welcome back

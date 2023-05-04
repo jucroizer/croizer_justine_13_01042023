@@ -33,6 +33,7 @@ function Header() {
           </Link>
           <div>
             <Link to="/Profil" className="main-nav-item">
+            <i className="fa fa-user-circle icone-size"></i>
               {firstName}
             </Link>
             <Link
@@ -43,7 +44,7 @@ function Header() {
                 logout();
               }}
             >
-              <i className="fa fa-user-circle"></i>
+              <i className="fa fa-sign-out icone-size"></i>
               Sign Out
             </Link>
           </div>
@@ -65,7 +66,7 @@ function Header() {
         </Link>
         <div>
           <Link to="/Login" className="main-nav-item" href="./sign-in.html">
-            <i className="fa fa-user-circle"></i>
+          <i className="fa fa-user-circle icone-size"></i>
             Sign In
           </Link>
         </div>
