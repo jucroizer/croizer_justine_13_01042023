@@ -1,0 +1,10 @@
+.argentbank-error-page {
+  margin: auto;
+  width: 45%;
+}
+
+@media screen and (max-width: 768px) {
+  .argentbank-error-page {
+    width: 100%;
+  }
+}
