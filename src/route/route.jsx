@@ -4,6 +4,7 @@ import Profil from "../pages/Profil";
 import Login from "../pages/Login";
 import Home from "../pages/Home"
 import EditProfil from "../pages/EditProfil";
+import Error from "../pages/Error";
 
 function RouteManager(){
     return (
@@ -13,6 +14,7 @@ function RouteManager(){
             <Route path="/Login" element={<Login />}></Route>
             <Route path="/Profil" element={<Profil />}></Route>
             <Route path="/EditProfil" element={<EditProfil />}></Route>
+            <Route path="*" element={<Error />}></Route>
           </Routes>
         </Router>
       );
