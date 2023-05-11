@@ -38,9 +38,9 @@ const initialState = {
 };
 
 //action creator
-export const login = (firstName, lastName, token) => ({
+export const login = (firstName, lastName, token, isLogged) => ({
   type: "login",
-  payload: { firstName: firstName, lastName: lastName, token: token },
+  payload: { firstName: firstName, lastName: lastName, token: token, isLogged: true },
 });
 
 export const logout = () => ({ type: "logout" });
@@ -58,9 +58,11 @@ function reducer(state = initialState, action) {
     const firstName = action.payload.firstName;
     const lastName = action.payload.lastName;
     const token = action.payload.token;
+    const isLogged = action.payload.isLogged;
+    // console.log("isLogged", isLogged);
 
     return produce(state, (draft) => {
-      draft.isLogged = true;
+      draft.isLogged = isLogged;
       draft.firstName = firstName;
       draft.lastName = lastName;
       draft.token = token;
@@ -69,6 +71,7 @@ function reducer(state = initialState, action) {
 
   //action logout
   if (action.type === "logout") {
+    window.localStorage.clear();
     return produce(state, (draft) => {
       draft.isLogged = false;
       draft.firstName = "";

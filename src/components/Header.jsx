@@ -1,13 +1,14 @@
 import { Link } from "react-router-dom";
 import logo from "../assets/argentBankLogo.png";
 import "../styles/Header.css";
-// import { Store } from "../store/store";
+
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Header() {
   let isConnected = useSelector((state) => state.isLogged);
+  console.log(isConnected);
   let firstName = useSelector((state) => state.firstName);
 
   const dispatch = useDispatch();
@@ -15,7 +16,8 @@ function Header() {
 
   function logout() {
     dispatch({ type: "logout" });
-    localStorage.removeItem("token");
+    window.localStorage.removeItem("token");
+    window.localStorage.removeItem("isLogged");
     navigate("/");
   }
 

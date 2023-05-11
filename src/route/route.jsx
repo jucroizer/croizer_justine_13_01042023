@@ -7,10 +7,14 @@ import EditProfil from "../pages/EditProfil";
 import Error from "../pages/Error";
 
 function RouteManager(){
+
+  const loggedIn = localStorage.getItem("isLogged");
+  console.log(loggedIn);
+
     return (
         <Router>
           <Routes>
-            <Route path="/" element={<Home />}></Route>
+            <Route path="/" exact element={<Home />}></Route>
             <Route path="/Login" element={<Login />}></Route>
             <Route path="/Profil" element={<Profil />}></Route>
             <Route path="/EditProfil" element={<EditProfil />}></Route>
