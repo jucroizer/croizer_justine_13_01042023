@@ -59,7 +59,6 @@ function reducer(state = initialState, action) {
     const lastName = action.payload.lastName;
     const token = action.payload.token;
     const isLogged = action.payload.isLogged;
-    // console.log("isLogged", isLogged);
 
     return produce(state, (draft) => {
       draft.isLogged = isLogged;

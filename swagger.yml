@@ -135,6 +135,10 @@ paths:
             $ref: '#/definitions/AccountsResponse'
         '400':
           description: Invalid Fields
+        '401':
+          description: Unauthorized missing valid authorization
+        '403':
+          description: Forbidden permission denied
         '500':
           description: Internal Server Error
   /account/{accountId}:
@@ -165,6 +169,10 @@ paths:
             $ref: '#/definitions/AccountResponse'
         '400':
           description: Invalid ID supplied
+        '401':
+          description: Unauthorized missing valid authorization
+        '403':
+          description: Forbidden permission denied
         '404':
           description: Account not found
         '500':
@@ -192,6 +200,10 @@ paths:
             $ref: '#/definitions/TransactionsResponse'
         '400':
           description: Invalid Fields
+        '401':
+          description: Unauthorized missing valid authorization
+        '403':
+          description: Forbidden permission denied
         '500':
           description: Internal Server Error
   /transaction/{transactionId}:
@@ -222,6 +234,10 @@ paths:
             $ref: '#/definitions/TransactionResponse'
         '400':
           description: Invalid ID supplied
+        '401':
+          description: Unauthorized missing valid authorization
+        '403':
+          description: Forbidden permission denied
         '404':
           description: Transaction not found
         '500':
@@ -269,6 +285,10 @@ paths:
           description: Transaction retrieved successfully
           schema:
             $ref: '#/definitions/TransactionResponse'
+        '401':
+          description: Unauthorized missing valid authorization
+        '403':
+          description: Forbidden permission denied
         '400':
           description: Invalid Fields or ID supplied
         '404':
@@ -298,6 +318,10 @@ paths:
           description: Transaction deleted successfully
           schema:
             $ref: '#/definitions/TransactionResponse'
+        '401':
+          description: Unauthorized missing valid authorization
+        '403':
+          description: Forbidden
         '404':
           description: Transaction not found
         '500':

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import useFetch from "../API/FetchAPI";
 import { useDispatch } from "react-redux";
 import { login } from "../store/store.js";
-// import store from "../redux/store.js";
 
 function Login() {
   let navigate = useNavigate();
@@ -14,6 +13,7 @@ function Login() {
   const [passwordValue, setPassword] = useState({
     password: "",
   });
+
 
   const dispatch = useDispatch();
   // console.log(dispatch);
