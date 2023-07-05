@@ -2,7 +2,7 @@
 
 ## Description
 
-Project 12 of the Junior Web Developer path at OpenClassrooms. The goal was to create a banking application with React and Redux.
+This is the 13th project of the Front-end Developer path at OpenClassrooms. The goal was to create a banking application with React and Redux.
 
 You can connect to the application with the following credentials:
 - email: tony@stark.com
